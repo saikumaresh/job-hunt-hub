@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Job Hunt Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800;900&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    />
+    <script type="application/json" id="claude-artifacts-manifest">
+      { "permissions": ["notifications", "menu-bar", "full-access"] }
+    </script>
+    <style>
+      /*__CSS__*/
+    </style>
+  </head>
+  <body>
+    <!-- First-run setup wizard -->
+    <section id="setup" class="setup" hidden aria-labelledby="setup-title"></section>
+
+    <div class="app" id="shell">
+      <aside class="rail">
+        <div class="brand"><b>Job Hunt Hub</b><span>every role in one place</span></div>
+        <nav class="nav" aria-label="Sections">
+          <button data-view="board" aria-current="page">Board</button>
+          <button data-view="inbox">
+            Inbox <span class="count" id="inbox-count" hidden></span>
+          </button>
+          <button data-view="resume">Resume</button>
+          <button data-view="stats">Stats</button>
+          <button data-view="settings">Settings</button>
+        </nav>
+        <span class="spacer"></span>
+        <div class="rail-extra">
+          <button class="btn btn-sm" id="install" hidden>Install as app</button>
+          <p class="small muted" id="storage-note"></p>
+        </div>
+      </aside>
+
+      <main>
+        <!-- BOARD -->
+        <section class="view" id="view-board">
+          <div class="view-head">
+            <div>
+              <h1>Your pipeline</h1>
+              <p id="board-sub">Paste a job post to add a role. You decide every move.</p>
+            </div>
+            <div class="row">
+              <button class="btn btn-primary" id="add-role">Add a role</button>
+              <button class="btn btn-sm guide-btn">Guide</button>
+            </div>
+          </div>
+          <div id="due-strip"></div>
+          <div class="stage-tabs chips" id="stage-tabs" role="tablist" aria-label="Stage"></div>
+          <div class="board" id="board"></div>
+        </section>
+
+        <!-- INBOX -->
+        <section class="view" id="view-inbox" hidden>
+          <div class="view-head">
+            <div>
+              <h1>Inbox</h1>
+              <p>
+                Job emails from Gmail, matched to your roles. Nothing changes until you accept. The
+                app never sends, replies or deletes.
+              </p>
+            </div>
+            <div class="row">
+              <button class="btn btn-primary" id="sync-gmail">Sync Gmail</button>
+              <button class="btn btn-sm guide-btn">Guide</button>
+            </div>
+          </div>
+          <p class="small muted" id="sync-status"></p>
+          <div id="suggestions"></div>
+          <div class="panel" style="margin-top: 28px">
+            <h3>Upcoming interviews</h3>
+            <div id="interviews"></div>
+          </div>
+        </section>
+
+        <!-- RESUME -->
+        <section class="view" id="view-resume" hidden>
+          <div class="view-head">
+            <div>
+              <h1>Resume</h1>
+              <p>
+                Your master profile is the only source of facts. Every tailored resume is built from
+                it, on one page.
+              </p>
+            </div>
+            <div class="row">
+              <button class="btn" id="reimport">Re-import from text</button>
+              <button class="btn btn-sm guide-btn">Guide</button>
+            </div>
+          </div>
+          <div class="resume-grid">
+            <div class="panel" id="profile-panel">
+              <h3>Master profile</h3>
+              <div id="profile-editor"></div>
+            </div>
+            <div class="panel" id="preview-panel">
+              <h3>Base resume preview</h3>
+              <div id="base-preview"></div>
+              <div class="row" style="margin-top: 12px">
+                <button class="btn btn-sm" id="base-pdf">Download PDF</button>
+                <button class="btn btn-sm" id="base-docx">Download DOCX</button>
+                <button class="btn btn-sm" id="base-copy">Copy as text</button>
+              </div>
+            </div>
+          </div>
+          <div class="panel">
+            <h3>Saved versions</h3>
+            <div id="versions"></div>
+          </div>
+        </section>
+
+        <!-- STATS -->
+        <section class="view" id="view-stats" hidden>
+          <div class="view-head">
+            <div>
+              <h1>Stats</h1>
+              <p>How the search is going, from your own board.</p>
+            </div>
+            <button class="btn btn-sm guide-btn">Guide</button>
+          </div>
+          <div class="kpis" id="stat-kpis"></div>
+          <div class="cols">
+            <div class="panel">
+              <h3>Applications per week</h3>
+              <div class="bars" id="stat-weeks"></div>
+            </div>
+            <div class="panel">
+              <h3>Average days in each stage</h3>
+              <div class="bars" id="stat-stage"></div>
+            </div>
+          </div>
+          <div class="panel">
+            <h3>Best sources</h3>
+            <div id="stat-sources"></div>
+          </div>
+        </section>
+
+        <!-- SETTINGS -->
+        <section class="view" id="view-settings" hidden>
+          <div class="view-head">
+            <div>
+              <h1>Settings</h1>
+              <p>Everything saves as you change it.</p>
+            </div>
+            <button class="btn btn-sm guide-btn">Guide</button>
+          </div>
+          <div class="cols" id="settings-body"></div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Job detail panel -->
+    <section id="job" class="job-panel" hidden aria-labelledby="job-title"></section>
+
+    <script>
+      /*__JS__*/
+    </script>
+  </body>
+</html>
